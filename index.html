@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Minidoku Prototype</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="brand" role="presentation">
+        <h1 class="brand__title">Minidoku</h1>
+        <span class="brand__subtitle">Sudoku made easy.</span>
+      </div>
+      <div class="header-controls" role="group" aria-label="Primary actions">
+        <div class="theme-switcher">
+          <button
+            id="themeButton"
+            class="icon-button"
+            type="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+            aria-controls="themeMenu"
+            aria-label="Change theme"
+          >
+            <span class="icon icon-palette" aria-hidden="true"></span>
+          </button>
+          <div
+            id="themeMenu"
+            class="theme-popover"
+            role="menu"
+            data-theme-menu
+            hidden
+          >
+            <button
+              type="button"
+              role="menuitemradio"
+              aria-checked="false"
+              data-theme-option="system"
+            >
+              System
+            </button>
+            <button
+              type="button"
+              role="menuitemradio"
+              aria-checked="false"
+              data-theme-option="light"
+            >
+              Light
+            </button>
+            <button
+              type="button"
+              role="menuitemradio"
+              aria-checked="false"
+              data-theme-option="dark"
+            >
+              Dark
+            </button>
+            <button
+              type="button"
+              role="menuitemradio"
+              aria-checked="false"
+              data-theme-option="sepia"
+            >
+              Sepia
+            </button>
+            <button
+              type="button"
+              role="menuitemradio"
+              aria-checked="false"
+              data-theme-option="high-contrast"
+            >
+              High contrast
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="game-panel">
+        <div class="board-wrapper">
+          <div class="controls-panel">
+            <div class="top-controls">
+              <button id="newGameButton" class="pill-button" type="button">
+                New Puzzle
+              </button>
+              <div class="difficulty-select">
+                <label for="difficultySelect" class="sr-only">Difficulty</label>
+                <select id="difficultySelect" aria-label="Difficulty">
+                  <option value="easy" selected>Easy</option>
+                  <option value="medium">Medium</option>
+                  <option value="hard">Hard</option>
+                  <option value="expert">Expert</option>
+                </select>
+              </div>
+              <span class="top-controls__time"
+                >Time · <span data-timer>00:00</span></span
+              >
+              <button
+                id="timerControl"
+                class="pill-button timer-button"
+                type="button"
+              >
+                Pause
+              </button>
+            </div>
+          </div>
+
+          <div class="board-stage" data-board-stage>
+            <div data-board aria-label="Sudoku board"></div>
+            <div class="board-overlay" data-overlay hidden>
+              <p class="board-overlay__message" data-overlay-message></p>
+              <button
+                type="button"
+                class="board-overlay__action"
+                data-overlay-continue
+                hidden
+              >
+                Continue
+              </button>
+            </div>
+          </div>
+          <div
+            class="onboarding-tip"
+            data-onboarding-tip
+            role="status"
+            aria-live="polite"
+            hidden
+          >
+            Tap a cell, then select a number below.
+          </div>
+          <div class="number-palette" data-number-palette></div>
+          <div class="action-row">
+            <button
+              id="notesToggle"
+              class="action-button action-button--ghost"
+              type="button"
+              aria-pressed="false"
+            >
+              <span class="icon icon-pencil" aria-hidden="true"></span>
+              Notes
+            </button>
+            <button
+              id="hintButton"
+              class="action-button action-button--primary"
+              type="button"
+            >
+              <span class="hint-button__label">Use Hint</span>
+              <span
+                class="hint-button__count"
+                data-hint-count
+                aria-hidden="true"
+                >3</span
+              >
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <aside class="stats-panel" aria-live="polite">
+        <h2>Session stats</h2>
+        <div data-stats></div>
+      </aside>
+    </main>
+
+    <footer>
+      Prototype goal: validate generator quality, notes UX, highlighting, and hint
+      flow before SwiftUI port.
+    </footer>
+
+    <div class="message-bar" data-message role="status" aria-live="polite"></div>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
