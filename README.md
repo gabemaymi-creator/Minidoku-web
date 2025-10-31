@@ -2,6 +2,8 @@
 
 Minidoku is a browser-based Sudoku prototype built to validate the generator quality, notes UX, highlighting behaviour, and hint flow before investing in a native SwiftUI port. The app runs entirely on the client with modern, dependency-free JavaScript.
 
+## Deployed through Vercel: minidoku-one.vercel.app
+
 ## Features
 - **On-device puzzle generation** using backtracking to produce puzzles with a single solution across four difficulty presets (easy, medium, hard, expert).
 - **Smart number palette** that highlights the remaining count for each digit and reflects completion state in real time.
