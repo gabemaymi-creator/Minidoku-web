@@ -1,5 +1,5 @@
 // solver.js
-// Backtracking solver used for generating puzzles and validating user input.
+// Generated from solver.ts for browser runtime compatibility.
 
 const SIZE = 9;
 const BOX_SIZE = 3;
@@ -85,7 +85,7 @@ function isSafe(board, row, col, num) {
 }
 
 function shuffledDigits() {
-  const arr = digits();
+  const arr = digits().slice();
   for (let i = arr.length - 1; i > 0; i -= 1) {
     const j = Math.floor(Math.random() * (i + 1));
     [arr[i], arr[j]] = [arr[j], arr[i]];
@@ -98,11 +98,12 @@ export function cloneBoard(board) {
 }
 
 export function createEmptyBoard() {
-  return Array.from({ length: SIZE }, () => Array(SIZE).fill(0));
+  return Array.from({ length: SIZE }, () =>
+    Array.from({ length: SIZE }, () => 0),
+  );
 }
 
 export function isPlacementValid(board, row, col, value) {
   if (value < 1 || value > 9) return false;
   return isSafe(board, row, col, value);
 }
-

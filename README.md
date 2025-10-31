@@ -40,7 +40,7 @@ Minidoku is a browser-based Sudoku prototype built to validate the generator qua
 - `styles.css` – Theme tokens, responsive layout, high-contrast styling, and board animation rules.
 - `app.js` – UI orchestration: board rendering, input handling, hints, timer, overlays, stats, theming, and persistence wiring.
 - `generator.js` – Difficulty-aware puzzle generator that carves unique-solution boards using the solver utilities.
-- `solver.js` – Backtracking solver, validation helpers, cloning utilities, and board factory methods.
+- `solver.ts` / `solver.js` – TypeScript source and compiled runtime solver covering validation helpers, cloning utilities, and board factory methods.
 - `storage.js` – Local storage helpers with migration logic and defaults for stats/onboarding state.
 
 ## Running Locally
@@ -50,7 +50,18 @@ Minidoku is a browser-based Sudoku prototype built to validate the generator qua
      or `npx serve .`
 3. Open `http://localhost:4000` (or the reported address) in a modern browser.
 
+## Deploying to Vercel
+1. Sign in to Vercel and create a new project.
+2. When prompted for the repository path, point the root to the `web` directory (Framework preset: **Other**).
+3. Leave the build command empty (no build step) and set the output directory to `.` so the static assets deploy as-is.
+4. Connect the production branch you want to publish (e.g., `main`) and trigger the first deployment; subsequent pushes redeploy automatically.
+
 ## Development Notes
 - The project has no build step; edits to the JavaScript or CSS files take effect on reload.
+- If you tweak `solver.ts`, ensure `solver.js` stays in sync (run `npx tsc solver.ts --target ES2020 --module ES2020 --outDir .` or manually copy the changes).
 - Puzzle generation relies on randomness; for deterministic debugging, you can stub `Math.random`.
 - Tests are not bundled—verify changes manually in the browser, paying attention to persistence and theming across reloads.
+
+## Tests
+1. Install dev dependencies with `npm install`.
+2. Run `npm test` to execute the Vitest suite that validates generated puzzles retain a single solution across difficulties.
